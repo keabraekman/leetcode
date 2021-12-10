@@ -1,8 +1,8 @@
 import math
 
-# height = [1,8,6,2,5,4,8,3,7]
-height = [1,2,4,3]
+height = [1,8,6,2,5,4,8,3,7]
 
+# INEFFICIENT SOLUTION
 # def maxArea(height):
 #     areas = []
 #     for i in range(len(height)):
@@ -17,25 +17,17 @@ height = [1,2,4,3]
 # print(maxArea(height))
 
 
-
-
-
 def maxArea(height):
     left = 0
-    right = 0
-    l = 0
-    r = 0
-    for i in range(len(height)):
-        if(left+i<height[i]):
-            left = height[i]
-            l = i
-    for i in range(len(height)):
-        if(right+i<height[len(height)-1-i]):
-            right = height[len(height)-1-i]
-            r = len(height)-1-i
-    print(l)
-    print(r)
-    return (abs(r-l) * min([left, right]))
+    right = len(height)-1
+    area = 0
+    while(left < right):
+        area = max(area, (right-left) * min(height[left], height[right]))
+        if(height[left] < height[right]):
+            left += 1
+        else :
+            right -= 1
+    return area
+
 
 print(maxArea(height))
-
