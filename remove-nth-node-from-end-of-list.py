@@ -35,6 +35,5 @@ def removeNthFromEnd(head, n):
     while(right):
         left = left.next
         right = right.next
-        
     left.next = left.next.next
     return dummy.next
