@@ -44,8 +44,6 @@ def find_pivot(nums):
     return find_pivot[min_index:max_index]
 
 
-
-
 def search(nums, target):
     pivot = find_pivot(nums)
     sorted_nums = nums[pivot+1:len(nums-1)] + nums[0 : pivot]
@@ -64,6 +62,7 @@ def search(nums, target):
     left, right = 0, len(nums)-1
     while left<=right:
         mid = left+(right-left)//2
+        # mid = int(left+(right-left)/2)
         if nums[mid] == target:
             return mid
         if nums[mid]<nums[right]:
