@@ -57,4 +57,22 @@ def twoIntervals(i1, i2):
 
 
 
-print(merge([[1,3],[2,6],[8,10],[15,18]]))
+
+
+
+
+def merge2(intervals):
+    intervals = sorted(intervals, key = lambda x:x[0])
+    result = [intervals[0]]
+    for start, end in intervals[1:]:
+        lastEnd = result[-1][1]
+        if start > lastEnd:
+            result.append([start, end])
+        else:
+            result[-1][1] = max(lastEnd, end)
+    return result
+
+
+intervals = [[1,3],[2,6],[8,10],[15,18]]
+intervals = [[1,4],[2,3]]
+print(merge2(intervals))
