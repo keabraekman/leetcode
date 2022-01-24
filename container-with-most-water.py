@@ -3,16 +3,16 @@ import math
 height = [1,8,6,2,5,4,8,3,7]
 
 # INEFFICIENT SOLUTION
-# def maxArea(height):
-#     areas = []
-#     for i in range(len(height)):
-#         areas_local = []
-#         for j in range(len(height)):
-#             area = min([height[i], height[j]]) * (abs(i-j))
-#             areas_local.append(area)
-#         areas.append(max(areas_local))
-#     print(areas)
-#     return max(areas)
+def maxArea(height):
+    areas = []
+    for i in range(len(height)):
+        areas_local = []
+        for j in range(len(height)):
+            area = min([height[i], height[j]]) * (abs(i-j))
+            areas_local.append(area)
+        areas.append(max(areas_local))
+    print(areas)
+    return max(areas)
 
 # print(maxArea(height))
 
