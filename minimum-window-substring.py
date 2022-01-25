@@ -65,8 +65,71 @@ def minWindow(s, t):
         substring_length += 1
     return ''
 
-t = "abcdd"
-tdict = {}
-for i in range(len(t)):
-    tdict[t[i]] = t.count(t[i])
+# t = "abcdd"
+# tdict = {}
+# for i in range(len(t)):
+#     tdict[t[i]] = t.count(t[i])
+# print(minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"))
+
+
+
+# After watching neetcode there is a solution in O(n)
+# The idea is to start with [0:n], increment n until the requirement is met
+# we need to check the requirements in constant time by comparing the last letter
+# Then we need to pop the beginning of the substring until it no longer meets the requirement
+# Then we increase until it does, and pop the beginning until it doesn't etc
+
+
+
+def minWindow(s, t):
+    # If the substring is nothing, return nothing
+    if t == '': return ''
+    # countT is the dict for counting the characters in r
+    # window is the same for the substring we compare to t
+    countT, window = {}, {}
+    # For each character in t, add one to the according key dict value
+    # If it doesn't exist, say it's zero
+    for c in t:
+        countT[c] = 1 + countT.get(c, 0)
+    # Have is the number of useful letters in the substring
+    # Need is the number of letters in t
+    have, need = 0, len(countT)
+    # result and result length
+    # result is just two pointers
+    # result length is the length of the best solution. We initiate to 
+    # Infinity because any solution is < than inf
+    # And we add a left pointer to 0 because we have the length already. 
+    # To find the right pointer, we just add the lenght
+    res, resLen, l = [-1,-1], float('infinity'), 0
+    # We add each letter of s to the substring until we meet the requirements
+    for r in range(len(s)):
+        c = s[r]
+        # Update the substring dict
+        window[c] = 1 + window.get(c, 0)
+        # If the letter is in the required dict and the count is the same
+        # We add one to have.
+        if c in countT and window[c] == countT[c]:
+            have += 1
+        # Once they are equal (the substring is valid)
+        while have == need:
+            # If the solution length is less than the current result solution
+            if (r-l+1) < resLen:
+                # Update the result and result length
+                res = [l,r]
+                resLen = (r-l+1)
+            # Update the substring dict
+            window[s[l]] -= 1
+            # If the count for substring is less than count for s
+            # Decrease have by 1
+            if s[l] in countT and window[s[l]] < countT[s[l]]:
+                have -= 1
+            # increase the left pointer
+            l += 1
+    # Attribute the result to pointers left and right
+    l, r = res[0], res[1]
+    # if length of result is less than infinity, return the substring
+    # Otherwise return an empty string
+    return s[l:r+1] if resLen != float('infinity') else ''
+
+
 print(minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"))

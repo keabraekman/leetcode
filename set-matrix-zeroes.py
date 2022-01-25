@@ -7,7 +7,6 @@
 
 def setZeroes(matrix):
     x, y = [], []
-
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if matrix[i][j] == 0:
