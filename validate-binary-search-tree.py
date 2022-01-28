@@ -46,7 +46,15 @@ def isValidBST(root):
 
 
 
-
+def isValidBST(root):
+    def dfs(i, minimum, maximum):
+        if not i:
+            return True
+        if i.val <= minimum or i.val >= maximum:
+            return False
+        else:
+            return dfs(i.left, minimum, i.val) and dfs(i.right, i.val, maximum)
+    return dfs(root, float('-inf'), float('inf'))
 
 
 
