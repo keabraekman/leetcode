@@ -5,6 +5,9 @@
 # You must write an algorithm that runs in O(n) time and without using the division operation.
 
 
+from lib2to3.pygram import python_symbols
+
+
 def productExceptSelf(nums):
     pre, post, ans = [nums[0]]*len(nums), [nums[-1]]*len(nums), [0]*len(nums)
     for i in range(1,len(nums)):
@@ -15,4 +18,14 @@ def productExceptSelf(nums):
         ans[i] = pre[i-1] * post[i+1]
     return ans
 
+
+def productExceptSelf(nums):
+    pre, post, ans = 1,1,[1]*len(nums)
+    for i in range(len(nums)):
+        ans[i] = pre
+        pre *= nums[i]
+    for i in range(len(nums)):
+        ans[len(nums)-1-i] *= post
+        post *= nums[len(nums)-1-i]
+    return ans
 print(productExceptSelf([1,2,3,4]))
