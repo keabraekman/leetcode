@@ -28,4 +28,6 @@ def productExceptSelf(nums):
         ans[len(nums)-1-i] *= post
         post *= nums[len(nums)-1-i]
     return ans
+
+    
 print(productExceptSelf([1,2,3,4]))
