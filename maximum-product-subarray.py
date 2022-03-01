@@ -50,6 +50,19 @@ def maxProduct(nums):
 
 
 
+def maxProduct(nums):
+    res = max(nums)
+    cMin, cMax = 1,1
+    for n in nums:
+        if n == 0:
+            cMin, cMax = 1,1
+        else:
+            tmp = cMin
+            cMin = min(n*cMin, n*cMax, n)
+            cMax = max(n*tmp, n*cMax, n)
+            res = max(res, cMax)
+    return res
+
 
 
 
