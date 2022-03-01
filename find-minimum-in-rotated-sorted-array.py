@@ -57,17 +57,62 @@ def findMin(nums):
             
 
 nums = [3,4,5,1,2]
+# print(findMin(nums))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Return wherever there is the largest difference
+
+def findMin(nums):
+
+    def recursion(nums):
+        if len(nums) < 3:
+            return min(nums)
+        l,m,r = 0, int(len(nums)/2), len(nums)-1
+        if nums[l] < nums[m] and nums[m] < nums[r]:
+            return nums[l]
+        elif abs(nums[l]-nums[m]) > abs(nums[m]-nums[r]):
+            return recursion(nums[:m+1])
+        else:
+            return recursion(nums[m:])
+    return recursion(nums)
+
+
+
+
+
+
+
+nums = [11,13,15,17]
 print(findMin(nums))
-
-
-
-
-
-
-
-
-
-
 
 
 
