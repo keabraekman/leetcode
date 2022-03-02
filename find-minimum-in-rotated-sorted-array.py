@@ -111,6 +111,22 @@ def findMin(nums):
 
 
 
+
+def findMin(nums):
+    l,m,r = 0,(len(nums)-1)//2, len(nums)-1
+    while r > l+2:
+        if max(nums[l], nums[m], nums[r]) == nums[m]:
+            l = m
+        elif min(nums[l], nums[m], nums[r]) == nums[m]:
+            r = m
+        else:
+            r = m
+        m = (r+l)//2
+    return min(nums[l], nums[m], nums[r])
+
+
+
+
 nums = [11,13,15,17]
 print(findMin(nums))
 

@@ -76,3 +76,121 @@ def search(nums, target):
             else:
                 left = mid+1
     return -1
+
+
+
+
+
+
+
+def search(nums, target):
+    l,r = 0, len(nums)-1
+    if len(nums) == 1:
+        if nums[0] == target: return 0
+        else: return -1
+    
+    while l < r:
+        m = (r+l)//2
+        if target == nums[m]:
+            return m
+        elif target == nums[r]:
+            return r
+            
+        if max(nums[l], nums[m], nums[r]) == nums[m] or min(nums[l], nums[m], nums[r]) == nums[m]:
+            # Rotation is on right
+            if nums[l] < nums[m]:
+                if target < nums[r] or target > nums[m]:
+                    l = m
+                else:
+                    r = m
+            # Rotation is on left
+            else:
+                if target < nums[m] or target > nums[l]:
+                    r = m
+                else:
+                    l = m
+        # Not rotated
+        else:
+            if target < nums[m]:
+                r = m
+            else:
+                l = m
+    return -1
+
+
+
+
+
+
+
+def search(nums, target):
+    l,r = 0, len(nums)-1
+    if not nums:
+        return -1
+    while l <= r:
+        m = (r+l)//2
+        if target == nums[m]:
+            return m
+        if nums[l] <= nums[m]:
+            if nums[l] <= target <= nums[m]:
+                r = m-1
+            else:
+                l = m+1
+        else:
+            if nums[m] <= target <= nums[r]:
+                l = m+1
+            else:
+                r = m-1
+    return -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def search(nums, target):
+    if not nums:
+        return -1
+    l, r = 0, len(nums)-1
+    while l <= r:
+        m = (l+r)//2
+        if nums[m] == target:
+            return m
+        if nums[l] <= nums[m]:
+            if nums[l] <= target <= nums[m]:
+                r = m -1
+            else:
+                l = m + 1
+        else:
+            if nums[m] <= target <= nums[r]:
+                l = m + 1
+            else:
+                r = m -1
+    return -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nums, target = [2,3,4,5,6,7,8,9,1],3
+
+print(search(nums, target))
