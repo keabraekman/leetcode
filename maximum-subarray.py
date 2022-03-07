@@ -31,4 +31,19 @@ def maxSubArray(nums):
 
 nums = [-1,-1,-2,-2]
 
+# print(maxSubArray(nums))
+
+
+
+def maxSubArray(nums):
+    curSum, maxSub = 0, nums[0]
+    for n in nums:
+        if curSum < 0:
+            curSum = 0
+        curSum += n
+        maxSub = max(maxSub, curSum)
+    return maxSub
+
+
+
 print(maxSubArray(nums))

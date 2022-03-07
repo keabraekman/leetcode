@@ -67,7 +67,7 @@ def threeSum(nums):
                 r -= 1
     return res
 
-print(threeSum(nums))
+# print(threeSum(nums))
 
 
 
@@ -96,3 +96,110 @@ class Solution:
                     left += 1
                     right -= 1
         return triplets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, 
+# and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+# Notice that the solution set must not contain duplicate triplets.
+
+# Start with hashmap : 2d dict with two keys and the addition between those two
+
+def threeSum(nums):
+    dict_2d, ans = dict(), []
+    for a in range(len(nums)):
+        for b in range(len(nums)):
+            if a < b:
+                if nums[a] + nums[b] not in dict_2d:
+                    dict_2d[nums[a]+nums[b]] = [[a,b]]
+                else:
+                    dict_2d[nums[a]+nums[b]].append([a,b])
+    # print(dict_2d)
+    for k in dict_2d:
+        print(k, ' : ', dict_2d[k])
+
+    for c in range(len(nums)):
+        if -nums[c] in dict_2d:
+            for i in range(len(dict_2d[-nums[c]])):
+                if c not in dict_2d[-nums[c]][i]:
+                    triplet = dict_2d[-nums[c]][i][:]
+                    triplet.append(c)
+                    ans.append(triplet)
+    
+    
+    for i in range(len(ans)):
+        for j in range(len(ans[i])):
+            ans[i][j] = nums[ans[i][j]]
+    return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Start by sorting the list
+# Iterate through each element (not already visited)
+# Use left and right pointers in sorted list
+def threeSum(nums):
+    nums.sort()
+    a,l,r,ans = 0,1,len(nums)-1, []
+    for a in range(len(nums)-2):
+        if a==0 or a > 0 and nums[a] != nums[a-1]:
+            l,r = a+1, len(nums)-1
+            while l < r:
+                if nums[a]+nums[l]+nums[r] == 0:
+                    ans.append([nums[a], nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l-1] and l < r:
+                        l +=1
+                elif nums[a] + nums[l] + nums[r] < 0:
+                    l += 1
+                else:
+                    r -= 1
+    return ans
+
+nums = [-2,0,0,2,2]
+print(threeSum(nums))

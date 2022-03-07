@@ -4,6 +4,11 @@
 
 # A subarray is a contiguous subsequence of the array.
 
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> 1c2148749596c5d571aeb387505e1216bf5e8c55
 # Example 1:
 
 # Input: nums = [2,3,-2,4]
@@ -17,6 +22,7 @@
 # Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 
 
+<<<<<<< HEAD
 
 
 def maxProduct(nums):
@@ -52,3 +58,68 @@ def maxProduct(nums):
 
 nums = [1,0,2,3,4,-2,-2]
 print(maxProduct(nums))
+=======
+def maxProduct(nums):
+    res = max(nums)
+    curMin, curMax = 1, 1
+    for n in nums:
+        tmp = n*curMax
+        curMax = max(n*curMax, n*curMin, n)
+        curMin = min(tmp, n*curMin, n)
+        res = max(res, curMax)
+    return res
+
+
+
+
+
+
+
+
+
+
+
+def maxProduct(nums):
+    res = max(nums)
+    cMax, cMin = 1, 1
+    for n in nums:
+        tmp, cMax = n*cMax, max(n*cMax, n*cMin, n)
+        cMin = min(tmp, n*cMin, n)
+        res = max(res, cMax)
+    return res
+
+
+
+def maxProduct(nums):
+    res = max(nums)
+    cMin, cMax = 1,1
+    for n in nums:
+        if n == 0:
+            cMin, cMax = 1,1
+        else:
+            tmp = cMin
+            cMin = min(n*cMin, n*cMax, n)
+            cMax = max(n*tmp, n*cMax, n)
+            res = max(res, cMax)
+    return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 1c2148749596c5d571aeb387505e1216bf5e8c55
