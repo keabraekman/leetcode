@@ -75,4 +75,28 @@ def merge2(intervals):
 
 intervals = [[1,3],[2,6],[8,10],[15,18]]
 intervals = [[1,4],[2,3]]
-print(merge2(intervals))
+# print(merge2(intervals))
+
+
+
+
+
+
+# Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+# Output: [[1,6],[8,10],[15,18]]
+# Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+
+
+def merge(intervals):
+    ans, intervals = [], sorted(intervals, key=lambda x:x[0])
+    for i in range(len(intervals)-1):
+        if intervals[i][1] >= intervals[i+1][0]:
+            intervals[i+1] = [intervals[i][0], max(intervals[i+1][1], intervals[i][1])]
+        else:
+            ans.append(intervals[i])
+    ans.append(intervals[-1])
+    return ans
+
+intervals = [[1,3],[2,6],[8,10],[15,18]]
+
+print(merge(intervals))
