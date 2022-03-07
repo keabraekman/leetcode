@@ -1,3 +1,6 @@
+from enum import unique
+
+
 s = 'abcdessfkweofiewf'
 def lengthOfLongestSubstring(s):
     lengths = []
@@ -15,3 +18,29 @@ def lengthOfLongestSubstring(s):
         return 0
     else:
         return max(lengths)
+
+
+
+
+
+
+def lengthOfLongestSubstring(s):
+    uniqueString, maxLength = '', 0
+    for i in range(len(s)):
+        if s[i] not in uniqueString:
+            uniqueString += s[i]
+        else:
+            uniqueString = uniqueString[uniqueString.index(s[i])+1:] + s[i]
+        maxLength = max(maxLength, len(uniqueString))
+    return maxLength
+
+
+
+
+s = 'abcdessfkweofiewf'
+# s = "aab"
+# s= "dvdf"
+# s="aabaab!bb"
+
+
+print(lengthOfLongestSubstring(s))
