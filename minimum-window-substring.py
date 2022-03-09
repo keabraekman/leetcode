@@ -132,4 +132,47 @@ def minWindow(s, t):
     return s[l:r+1] if resLen != float('infinity') else ''
 
 
-print(minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"))
+
+
+
+
+
+
+def minWindow(s, t):
+    haveDict, needDict, have, need, l, r, res,successful = dict(), dict(), 0, len(t), 0, 0, [0, len(s)-1], float('inf'), False
+    for i in range(len(t)):
+        if t[i] in needDict:
+            needDict[t[i]] += 1
+        else:
+            needDict[t[i]] = 1
+    while r < len(s):
+        while need > have and r < len(s):
+            if s[r] in needDict:
+                if s[r] in haveDict:
+                    haveDict[s[r]] += 1
+                else:
+                    haveDict[s[r]] = 1
+                if haveDict[s[r]] <= needDict[s[r]]:
+                    have += 1
+            r += 1
+
+        while need == have:
+            successful = True
+            if s[l] in needDict:
+                haveDict[s[l]] -= 1
+                if haveDict[s[l]] < needDict[s[l]]:
+                    have -= 1
+            l += 1
+        if r-l+1 < resLen and successful:
+            resLen, res = r-l+1, [l-1, r]
+    if not successful:
+        return ''
+    return s[res[0]:res[1]]
+
+
+
+# print(minWindow("adobecodebanc", "abc"))
+print(minWindow("a", "b"))
+
+
+
