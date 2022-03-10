@@ -43,17 +43,26 @@ def remove_duplicates(indices):
 
 
 strs = ["eat","tea","tan","ate","nat","bat"]
+# print(groupAnagrams(strs))
+
+
+
+def groupAnagrams(strs):
+    res, ordered = [], []
+    for i in range(len(strs)):
+        ordered.append([strs[i], i])
+    for i in range(len(ordered)):
+        ordered[i][0] = ''.join(sorted(ordered[i][0]))
+    ordered.sort(key=lambda x:x[0])
+    group = [strs[ordered[0][1]]]
+    for i in range(1,len(ordered)):
+        if ordered[i][0] == ordered[i-1][0]:
+            group.append(strs[ordered[i][1]])
+        else:
+            res.append(group)
+            group = [strs[ordered[i][1]]]
+    res.append(group)
+    return res
+
+strs = ["eat","tea","tan","ate","nat","bat"]
 print(groupAnagrams(strs))
-
-
-
-# def groupAnagrams(strs):
-#     res, ordered = [], strs[:]
-#     for i in range(len(strs)):
-#         ordered[i].append([sorted(strs[i]), i])
-#     ordered = sorted(ordered)
-
-#     sublist = []
-#     for i in range(len(strs)):
-
-#     return 0

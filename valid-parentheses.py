@@ -28,4 +28,41 @@ def isValid(s):
     else:
         return True
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def isValid(s):
+    stack, open, close = [], {}, {}
+    open['('], open['{'], open['['] = 1,2,3
+    close[')'], close['}'], close[']'] = 1,2,3
+    for i in range(len(s)):
+        if s[i] in open:
+            stack.append(open[s[i]])
+        else:
+            if stack and stack[-1] == close[s[i]]:
+                stack.pop()
+            else:
+                return False
+    if stack:
+        return False
+    return True
+
+
+s = "]"
 print(isValid(s))
+
+
+
