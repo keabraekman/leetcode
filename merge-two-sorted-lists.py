@@ -51,3 +51,18 @@ list2 = ListNode(2, ListNode(6))
 
 
 mergeTwoLists(list1, list2)
+
+
+
+def mergeTwoLists(list1, list2):
+    res = ListNode(0)
+    dummy = res
+    while list1 or list2:
+        if not list2 or (list1 and list1.val < list2.val):
+            res.next = list1
+            list1 = list1.next
+        elif not list1 or (list2 and list2.val <= list1.val):
+            res.next = list2
+            list2 = list2.next
+        res = res.next
+    return dummy.next
