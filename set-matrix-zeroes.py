@@ -26,3 +26,24 @@ def setZeroes(matrix):
 
 matrix = [[1,1,1],[1,0,1],[1,1,1]]
 print(setZeroes(matrix))
+
+
+def setZeroes(matrix):
+    x,y = [], []
+    cols, rows = len(matrix), len(matrix[0])
+    for i in range(cols):
+        for j in range(rows):
+            if matrix[i][j] == 0:
+                if i not in x:
+                    x.append(i)
+                if j not in y:
+                    y.append(j)
+
+    for i in range(len(x)):
+        matrix[x[i]] = [0]*rows
+
+    for i in range(cols):
+        for j in range(rows):
+            if j in y:
+                matrix[i][j] = 0
+        
