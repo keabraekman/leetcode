@@ -53,23 +53,41 @@ test = [[1,2,3],[4,5,6],[7,8,9]]
 #                   [6,2,8,4]]
 
 def rotate(matrix):
-    # 00, 02, 22, 20
-    # 01, 12, 21, 10
+    # Invert the list first 
+    n = len(matrix)
+    for i in range(int(n/2)):
+        matrix[i], matrix[n-1-i] = matrix[n-1-i], matrix[i]
+    for i in range(n):
+        for j in range(i,n):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    return matrix
 
-    # 00, 03, 33, 30
-    # 01, 13, 32, 20
-    # 02, 23, 31, 10
-    # 11, 12, 22, 21
 
-    # xy. x = (previous) y
-    # y = 0,3,3,0
-    # y = 1,3,2,0
-    # y = 2,3,1,0
-    # y = 1,2,2,1
+
+
+
+
+
+
+
+
+
+def rotate(matrix):
+    n = len(matrix)
+    for i in range(n):
+        matrix[i], matrix[n-1-i] = matrix[n-1-i], matrix[i]
     
-    return 
+    for i in range(n):
+        for j in range(i,n):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    
 
 
 
 
 
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+
+
+
+print(rotate(matrix))
