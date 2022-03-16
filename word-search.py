@@ -183,3 +183,24 @@ def exist(board, word):
             if dfs(r,c,0):
                 return True
     return False
+
+
+
+
+
+def exist(board, word):
+    rows, cols, path = len(board), len(board[0]), []
+    def dfs(r,c,i):
+        if i == len(word):
+            return True
+        if (c<0 or c>=cols or r<0 or r>=rows or board[r][c]!=word[i] or [r,c] in path):
+            return False
+        path.append([r,c])
+        res = (dfs(r-1,c,i+1) or dfs(r+1,c,i+1) or dfs(r,c-1,i+1) or dfs(r,c+1,i+1))
+        path.remove([r,c])
+        return res
+    for c in range(cols):
+        for r in range(rows):
+            if dfs(r,c,0):
+                return True
+    return False
