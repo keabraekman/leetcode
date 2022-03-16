@@ -6,3 +6,11 @@ def hammingWeight(n):
         bit = (n >> i) & 1
         res = res + bit
     return res
+
+
+def hammingWeight(n):
+    res = 0
+    while n > 0:
+        res += n%2
+        n = n >> 1
+    return res
