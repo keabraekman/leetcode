@@ -26,5 +26,74 @@ def longest_palindromic_substring(s):
     return max(answers, key=len)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def longest_palindromic_substring(s):
+    ans = ''
+    for i in range(len(s)):
+        l, r = i, i
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            if r-l+1 > len(ans):
+                ans = s[l:r+1]
+            l -= 1
+            r += 1
+        l, r = i, i+1
+        while l>=0 and r < len(s) and s[l] == s[r]:
+            if r-l+1 > len(ans):
+                ans = s[l:r+1]
+            l -= 1
+            r += 1
+    return ans
+
+
+
+
+
+
+
+
+
+def longest_palindromic_substring(s):
+    ans = ''
+    for i in range(len(s)):
+        l, r = i, i
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            if r-l+1 > len(ans):
+                ans = s[l:r+1]
+            l -= 1
+            r += 1
+        l, r = i, i+1
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            if r-l+1 > len(ans):
+                ans = s[l:r+1]
+            l -= 1
+            r += 1
+    return ans
+
+
+
+
+
+
+# tests = ['babad', "cbbd", 'a', 'ccc']
+tests = ['babad']
 for i in range(len(tests)):
     print(longest_palindromic_substring(tests[i]))
+
+
+

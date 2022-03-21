@@ -26,4 +26,17 @@ def climbStairs(n):
         
 
 
+# print(climbStairs(4))
+
+
+
+
+def climbStairs(n):
+    one, two = 1, 1
+    for i in range(n-1):
+        three = one+two
+        one = two
+        two = three
+    return three
+
 print(climbStairs(4))
