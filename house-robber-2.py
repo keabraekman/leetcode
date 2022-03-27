@@ -70,3 +70,16 @@ def rob(nums):
         return res
     else:
         return rob2
+
+def helper(nums):
+    rob1, rob2 = 0,0
+    for n in nums:
+        tmp = max(rob1+n, rob2)
+        rob1 = rob2
+        rob2 = tmp
+    return rob2
+
+def rob(nums):
+    if len(nums) < 2:
+        return nums[0]
+    return max(helper(nums[1:]), helper(nums[:len(nums)-1]))
