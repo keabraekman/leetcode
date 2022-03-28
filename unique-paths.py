@@ -31,4 +31,27 @@ def uniquePaths(m, n):
         row = newRow
     return row[0]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+def uniquePaths(m,n):
+    grid = []
+    for i in range(m):
+        grid.append([1]*n)
+    
+    for i in range(m-2,-1,-1):
+        for j in range(n-2, -1, -1):
+            grid[i][j] = grid[i+1][j] + grid[i][j+1]
+    return grid[0][0]
+
 print(uniquePaths(7,3))
