@@ -14,5 +14,32 @@ def canJump(nums):
     else:
         return False
 
+
+
+
+
+
+
+
+
+
+
+def canJump(nums):
+    dp = [False]*(len(nums)-1)+[True]
+    for i in range(len(nums)-2, -1, -1):
+        for j in range(i, i+nums[i]):
+            if j< len(nums) and dp[j]:
+                dp[i] = True
+    return dp[0]
+
+
+
+
+
+
+
+
+
 nums = [3,3,3,3,4]
+nums = [2,3,1,1,4]
 print(canJump(nums))

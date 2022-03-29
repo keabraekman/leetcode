@@ -21,14 +21,15 @@ def maxDepth(root):
 
 
 
-    def dfs(root, result):
-        if root.left or root.right:
-            result.append(1)
-            if root.left:
-                dfs(root.left, result)
-            if root.right:
-                dfs(root.right, result)
-        return result
 
-    result = dfs(root, [])
-    return result
+def maxDepth(root):
+    def dfs(root):
+        if not root:
+            return 0
+        return 1+max(dfs(root.left), dfs(root.right))
+    return dfs(root)
+
+def maxDepth(self, root):
+    if not root:
+        return 0
+    return 1+max(self.maxDepth(root.left), self.maxDepth(root.right))
