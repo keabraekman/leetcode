@@ -65,3 +65,51 @@ def maxPathSum(root):
         return root.val+max(leftMax, rightMax)
     dfs(root)
     return res[0]
+
+
+
+
+
+
+
+
+def maxPathSum(root):
+    # Result value in an array. It doesn't work if simple variable. To review with fiverr coach
+    res = [root.val]
+    def dfs(root):
+        # If no node, the path max is zero
+        if not root:
+            return 0
+        # Recursively, computes the maximum of the subtrees. Zero if negative
+        leftMax = max(dfs(root.left), 0)
+        rightMax = max(dfs(root.right), 0)
+        # This is the value if we split at the current node
+        res[0] = max(res[0], root.val + leftMax + rightMax)
+        # We return the max value without a split
+        return root.val+max(leftMax,rightMax)
+    # Run the function to change result and return result
+    dfs(root)
+    return res[0]
+
+
+
+
+
+
+
+
+
+
+
+
+def maxPathSum(root):
+    res = [root.val]
+    def dfs(root):
+        if not root:
+            return 0
+        leftMax = max(dfs(root.left),0)
+        rightMax = max(dfs(root.right),0)
+        res[0] = max(res[0], root.val+leftMax+rightMax)
+        return root.val+max(leftMax, rightMax)
+    dfs(root)
+    return res[0]
