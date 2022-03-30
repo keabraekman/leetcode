@@ -12,3 +12,58 @@ def isSameTree(p,q):
             return False
         return (dfs(p.left, q.left) and dfs(p.right, q.right))
     return dfs(p, q)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def isSameTree(p,q):
+    def dfs(p,q):
+        if not p and not q:
+            return True
+        if (not p or not q) or (p.val != q.val):
+            return False
+        else:
+            return (dfs(p.left, q.left) and dfs(p.right, q.right))
+    return dfs(p,q)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def isSameTree(p,q):
+    def dfs(p,q):
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        else:
+            return dfs(p.left, q.left) and dfs(p.right, q.right)
+    return dfs(p,q)
