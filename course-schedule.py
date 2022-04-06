@@ -107,3 +107,73 @@ def dfs(crs):
     visitSet.remove(crs)
     preMap[crs] = []
     return True
+
+
+
+
+
+
+
+def canFinish(numCourses, prerequisites):
+    preMap = {}
+    for i in range(numCourses):
+        preMap[i] = []
+    for i in range(len(prerequisites)):
+        preMap[prerequisites[i][0]].append(prerequisites[i][1])
+    visit = set()
+    def dfs(crs):
+        if crs in visit:
+            return False
+        if preMap[crs] == []:
+            return True
+        
+        visit.add(crs)
+        for p in preMap[crs]:
+            if not dfs(p):
+                return False
+        visit.remove(crs)
+        preMap[crs] = []
+        return True
+    
+    for c in range(numCourses):
+        if not dfs(c):
+            return False
+    return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def canFinish(numCourses, prerequisites):
+    preMap = {}
+    for i in range(numCourses):
+        preMap[i] = []
+    for i in range(len(prerequisites)):
+        preMap[prerequisites[i][0]].append(prerequisites[i][1])
+    visit = set()
+    def dfs(crs):
+        if crs in visit:
+            return False
+        if preMap[crs] == []:
+            return True
+        
+        visit.add(crs)
+        for p in preMap[crs]:
+            if not dfs(p):
+                return False
+        visit.remove(crs)
+        preMap[crs] = []
+        return True
+    for c in range(numCourses):
+        if not dfs(c):
+            return False
+    return True
