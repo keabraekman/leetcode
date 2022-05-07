@@ -16,30 +16,33 @@
 # Output: 9
 
 def longestConsecutive(nums):
-    if len(nums) == 0:
-        return 0
-    nums = list(set(nums))
-    nums.sort()
-    print('NUMS = ', nums)
-    l, result, current = nums[0], 1, 1
-    for i in range(1,len(nums)):
-        if nums[i] == l + 1:
-            current += 1
-            result = max(result, current)
-        else:
-            current = 1
-        l = nums[i]
-    return result
+    numSet, longest = set(nums), 0
+    for n in nums:
+        if n-1 not in numSet:
+            length = 0
+            while n+length in numSet:
+                length += 1
+            longest = max(length, longest)
+    return longest
 
-nums = [100,4,200,1,3,2]
-print(longestConsecutive(nums))
 
-# We create an array the same length of tuples.
-# Each element will be the number preceding the num and following number
-# If there are no numbers, we remove the num from nums
-# Then we start with the smallest number in nums, 
-# Get the number following it
-# Then we get the index of that number and start again
 
-# NO. We sort the list. Way simpler.
 
+
+
+
+
+
+
+
+
+
+def longestConsecutive(nums):
+    numSet, longest = set(nums), 0
+    for n in nums:
+        length = 0
+        if n-1 not in numSet:
+            while n+length in numSet:
+                length += 1
+        longest = max(length, longest)
+    return longest
