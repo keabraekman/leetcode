@@ -42,7 +42,7 @@ def validTree(n, edges):
     adj = {}
     for i in range(n):
         adj[i] = []
-    for n1, n2, in edges:
+    for n1, n2 in edges:
         adj[n1].append(n2)
         adj[n2].append(n1)
     visit = set()
@@ -57,4 +57,3 @@ def validTree(n, edges):
                 return False
         return True
     return dfs(0,-1) and n == len(visit)
-    
