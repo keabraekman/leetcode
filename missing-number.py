@@ -42,7 +42,8 @@
 def missingNumber(nums):
     totalSum, numsSum = 0, 0
     for i in range(len(nums)):
-        totalSum , numsSum = i+1, nums[i]
+        totalSum += i+1
+        numsSum += nums[i]
     return totalSum - numsSum
 
 nums = [3,0,1]

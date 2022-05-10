@@ -5,6 +5,5 @@
 
 def balancedSubsets(array,n):
     target = sum(array)/n
-    l,r = 0, len(array)-1
     
     return []
