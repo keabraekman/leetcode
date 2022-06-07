@@ -172,7 +172,35 @@ def minWindow(s, t):
 
 
 # print(minWindow("adobecodebanc", "abc"))
-print(minWindow("a", "b"))
+# print(minWindow("a", "b"))
 
 
 
+def minWindow(s, t):
+    sDict, tDict, have = {}, {}, 0
+    for c in t:
+        tDict[c] = 1 + tDict.get(c,0)
+    need = len(tDict)
+    res, resLen = s, float('inf')
+    l = 0
+    for r in range(len(s)):
+        sDict[s[r]] = 1+sDict.get(s[r], 0)
+        if s[r] in tDict and sDict[s[r]] == tDict[s[r]]:
+            have += 1
+        while have == need:
+            if r-l+1 < resLen:
+                res = s[l:r+1]
+                resLen = r-l+1
+            sDict[s[l]] -= 1
+            if s[l] in tDict and sDict[s[l]] < tDict[s[l]]:
+                have -= 1
+            l += 1
+    if resLen == float('inf'):
+        return ''
+    else:
+        return res
+
+
+
+print(minWindow("adobecodebanc", "abc"))
+# print(minWindow("a", "aa"))

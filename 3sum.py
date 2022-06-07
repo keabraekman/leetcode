@@ -201,5 +201,37 @@ def threeSum(nums):
                     r -= 1
     return ans
 
+# nums = [-2,0,0,2,2]
+# print(threeSum(nums))
+
+
+
+
+
+
+
+def threeSum(nums):
+    nums.sort()
+    res = []
+    if len(nums)<3:
+        return []
+    for i in range(len(nums)-2):
+        if i==0 or (nums[i] != nums[i-1]):
+            l,r = i+1, len(nums)-1
+            while l < r:
+                if nums[i] + nums[l] + nums[r] == 0:
+                    res.append([nums[i], nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l-1] and r>l:
+                        l += 1
+                elif nums[i] + nums[l] + nums[r] < 0:
+                    l += 1
+                else:
+                    r -= 1
+    return res
+
+
+
+# nums = [-1,0,1,2,-1,-4]
 nums = [-2,0,0,2,2]
 print(threeSum(nums))
